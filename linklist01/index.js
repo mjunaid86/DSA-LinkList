@@ -6,48 +6,41 @@ class node {
 }
 
 class linklist {
-  costructor() {
+  constructor() {
     this.first = null;
-    this.current = null;
+    this.last = null;
   }
 
-  addFirstNode(item) {
-    this.first = new node(item);
-    console.log(this.first);
-  }
-
-  addNode(item) {
+  addNext(item) {
+    let current = null;
     if (this.first == null) {
       this.first = new node(item);
-      console.log(this.first);
     } else {
-      this.next = new node(item, this.first);
-      console.log(this.current);
-    }
-  }
-
-  addnext(item) {
-    if (this.first == null) {
-      this.first = new node(item);
-      this.current = this.first;
-      console.log(this.first);
-    } else {
-      let current;
-      while (this.current.next) {
-        current = this.current.next;
-        current.next = new node(item);
+      current = this.first;
+      while (current.next != null) {
+        current = current.next;
       }
+      current.next = new node(item);
     }
   }
 
-  printAllData() {
-    while (this.current.next) {
-      console.log(this.current);
+  addFirst(item) {
+    let current = this.first;
+    if (current == null) {
+      this.first = new node(item);
+    } else {
+      this.first = new node(item, current);
     }
+  }
+
+  printALL() {
+    console.log(this.first);
   }
 }
 
 const ll = new linklist();
-ll.addNode(21);
-ll.addNode(32);
-ll.printAllData();
+ll.addFirst(10);
+ll.addNext(20);
+ll.addNext(30);
+ll.addFirst(5);
+ll.printALL();
